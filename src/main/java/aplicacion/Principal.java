@@ -1,16 +1,17 @@
 package aplicacion;
 
 import gestionDeCompras.*;
-import interfaz.AppAWT;
+import interfaz.VentanaPrincipal;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class Principal {
+public class  Principal {
     public static void main(String[] args) {
 
-        AppAWT ventanaPrincipal = new AppAWT();
+
 
         List<Proveedor> listaProveedores = new ArrayList();
         List<DetalleSolicitud> listaDetalleSolicitud = new ArrayList();
@@ -68,6 +69,11 @@ public class Principal {
         listaSolicitudesCompra.add(solicitudCompra1);
         listaSolicitudesCompra.add(solicitudCompra2);
         listaSolicitudesCompra.add(solicitudCompra3);
+
+        SwingUtilities.invokeLater(() -> {
+            VentanaPrincipal ventana = new VentanaPrincipal(listaProveedores, listaProductos, listaSolicitudesCompra);
+            ventana.setVisible(true);
+        });
 
         Ejecutable ejecutable = new Ejecutable(listaProveedores, listaProductos,listaDetalleSolicitud,listaSolicitudesCompra);
 
