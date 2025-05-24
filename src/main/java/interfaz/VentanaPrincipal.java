@@ -1,5 +1,5 @@
 package interfaz;
-
+ 
 import gestionDeCompras.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,13 +16,14 @@ public class VentanaPrincipal extends Frame {
 
     public VentanaPrincipal(List<Proveedor> proveedores, List<Producto> productos,
                             List<SolicitudCompra> solicitudes) {
-        super("Menú principal SISTEMA ERP");
+        super("SISTEMA de compras ERP");
         this.proveedores = proveedores;
         this.productos = productos;
         this.solicitudes = solicitudes;
 
         setSize(400, 300);
         setLayout(new GridLayout(4, 1));
+        setLocation(550, 250);
 
 
         addWindowListener(new WindowAdapter() {
@@ -171,7 +172,7 @@ public class VentanaPrincipal extends Frame {
                 String categoriaTexto = campoCategoria.getText();
                 String idProveedorTexto = campoIdProveedor.getText();
 
-                // Buscar categoría
+
                 CategoriaProducto categoriaSeleccionada = null;
                 for (CategoriaProducto c : CategoriaProducto.values()) {
                     if (c.name().equals(categoriaTexto)) {
@@ -179,7 +180,7 @@ public class VentanaPrincipal extends Frame {
                     }
                 }
 
-                // Buscar proveedor
+
                 Proveedor proveedorSeleccionado = null;
                 for (Proveedor p : proveedores) {
                     if (String.valueOf(p.getId()).equals(idProveedorTexto)) {
@@ -187,7 +188,7 @@ public class VentanaPrincipal extends Frame {
                     }
                 }
 
-                // Convertir precio a double sin usar parse
+
                 double precioUnitario = 0;
                 boolean esPrecioValido = true;
                 int puntoIndex = precioTexto.indexOf(".");
@@ -377,7 +378,7 @@ public class VentanaPrincipal extends Frame {
 
             final SolicitudCompra[] solicitudEncontrada = new SolicitudCompra[1];
 
-            // Botón para buscar
+
             btnBuscar.addActionListener(e -> {
                 String inputNumero = campoNumero.getText();
                 solicitudEncontrada[0] = null;
@@ -398,7 +399,7 @@ public class VentanaPrincipal extends Frame {
                 }
             });
 
-            // Botón para cambiar estado
+
             btnCambiar.addActionListener(e -> {
                 if (solicitudEncontrada[0] != null) {
                     String nuevoTexto = campoNuevoEstado.getText();
@@ -508,7 +509,7 @@ public class VentanaPrincipal extends Frame {
                     idProveedores++;
 
                     proveedores.add(proveedor);
-                    resultado.setText("Proveedor registrado exitosamente.");
+                    resultado.setText("Proveedor registrado.");
                 } else {
                     resultado.setText("Faltan datos.");
                 }
@@ -537,9 +538,8 @@ public class VentanaPrincipal extends Frame {
             TextArea areaTexto = new TextArea();
             listarFrame.add(areaTexto, BorderLayout.CENTER);
 
-            // Comprobar si proveedores está vacío sin usar isEmpty()
             if (proveedores.size() == 0) {
-                areaTexto.setText("No hay proveedores.");
+                areaTexto.setText("");
             } else {
                 String textoProveedores = "";
                 for (int i = 0; i < proveedores.size(); i++) {
@@ -562,7 +562,7 @@ public class VentanaPrincipal extends Frame {
 
     public static void main(String[] args) {
 
-        // Datos de prueba básicos
+
         List<Proveedor> listaProveedores = new ArrayList();
         List<DetalleSolicitud> listaDetalleSolicitud = new ArrayList();
         List<SolicitudCompra> listaSolicitudesCompra = new ArrayList();
