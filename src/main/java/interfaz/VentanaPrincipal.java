@@ -8,8 +8,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class VentanaPrincipal extends Frame {
-    int idProductos = 1;
-    int idProveedores = 1;
+    int idProductos = 103;
+    int idProveedores = 103;
     private List<Proveedor> proveedores;
     private List<Producto> productos;
     private List<SolicitudCompra> solicitudes;
@@ -24,7 +24,7 @@ public class VentanaPrincipal extends Frame {
         setSize(400, 300);
         setLayout(new GridLayout(4, 1));
 
-        // Configurar cierre de ventana
+
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
@@ -148,7 +148,7 @@ public class VentanaPrincipal extends Frame {
             }
             productoFrame.add(new Label(listaCategorias));
 
-            productoFrame.add(new Label("ID del proveedor (ver abajo):"));
+            productoFrame.add(new Label("ID del proveedor:"));
             TextField campoIdProveedor = new TextField();
             productoFrame.add(campoIdProveedor);
 
@@ -176,7 +176,6 @@ public class VentanaPrincipal extends Frame {
                 for (CategoriaProducto c : CategoriaProducto.values()) {
                     if (c.name().equals(categoriaTexto)) {
                         categoriaSeleccionada = c;
-                        break;
                     }
                 }
 
@@ -185,7 +184,6 @@ public class VentanaPrincipal extends Frame {
                 for (Proveedor p : proveedores) {
                     if (String.valueOf(p.getId()).equals(idProveedorTexto)) {
                         proveedorSeleccionado = p;
-                        break;
                     }
                 }
 
@@ -200,14 +198,12 @@ public class VentanaPrincipal extends Frame {
                         char c = parteEntera.charAt(i);
                         if (c < '0' || c > '9') {
                             esPrecioValido = false;
-                            break;
                         }
                     }
                     for (int i = 0; i < parteDecimal.length(); i++) {
                         char c = parteDecimal.charAt(i);
                         if (c < '0' || c > '9') {
                             esPrecioValido = false;
-                            break;
                         }
                     }
                     if (esPrecioValido) {
@@ -227,9 +223,9 @@ public class VentanaPrincipal extends Frame {
                     Producto nuevoProducto = new Producto(idProductos++, nombre, precioUnitario, proveedorSeleccionado, categoriaSeleccionada, descripcion);
                     productos.add(nuevoProducto);
                     proveedorSeleccionado.getProductos().add(nuevoProducto);
-                    resultado.setText("Producto registrado exitosamente. Costo: " + nuevoProducto.calcularCosto());
+                    resultado.setText("Producto registrado exitosamente. ");
                 } else {
-                    resultado.setText("Datos inválidos. Revisa los campos.");
+                    resultado.setText("Datos inválidos.");
                 }
             });
 
@@ -242,8 +238,7 @@ public class VentanaPrincipal extends Frame {
 
 
     }
-
-    private void listarProductos() {
+     private void listarProductos() {
         Frame listapro = new Frame("Lista de Productos");
         listapro.setSize(400, 300);
         TextArea area = new TextArea();
@@ -390,7 +385,7 @@ public class VentanaPrincipal extends Frame {
                 for (SolicitudCompra s : solicitudes) {
                     if (String.valueOf(s.getNumSolicitud()).equals(inputNumero)) {
                         solicitudEncontrada[0] = s;
-                        break;
+
                     }
                 }
 
@@ -412,7 +407,6 @@ public class VentanaPrincipal extends Frame {
                     for (EstadoSolicitud estado : EstadoSolicitud.values()) {
                         if (estado.name().equals(nuevoTexto)) {
                             nuevoEstado = estado;
-                            break;
                         }
                     }
 
@@ -435,9 +429,6 @@ public class VentanaPrincipal extends Frame {
         });
 
             solicitud.setVisible(true);
-
-
-
 
 
 
@@ -465,27 +456,27 @@ public class VentanaPrincipal extends Frame {
             TextField campoCorreo = new TextField();
             proveedorFrame.add(campoCorreo);
 
-            proveedorFrame.add(new Label("Dirección - Calle principal:"));
+            proveedorFrame.add(new Label("Calle principal:"));
             TextField campoPrincipal = new TextField();
             proveedorFrame.add(campoPrincipal);
 
-            proveedorFrame.add(new Label("Dirección - Calle secundaria:"));
+            proveedorFrame.add(new Label("Calle secundaria:"));
             TextField campoSecundaria = new TextField();
             proveedorFrame.add(campoSecundaria);
 
-            proveedorFrame.add(new Label("Dirección - Número de propiedad:"));
+            proveedorFrame.add(new Label("Número de casa:"));
             TextField campoNumCalle = new TextField();
             proveedorFrame.add(campoNumCalle);
 
-            proveedorFrame.add(new Label("Dirección - Ciudad:"));
+            proveedorFrame.add(new Label("Ciudad:"));
             TextField campoCiudad = new TextField();
             proveedorFrame.add(campoCiudad);
 
-            proveedorFrame.add(new Label("Dirección - País:"));
+            proveedorFrame.add(new Label("País:"));
             TextField campoPais = new TextField();
             proveedorFrame.add(campoPais);
 
-            proveedorFrame.add(new Label("Dirección - Provincia:"));
+            proveedorFrame.add(new Label("Provincia:"));
             TextField campoProvincia = new TextField();
             proveedorFrame.add(campoProvincia);
 
@@ -497,7 +488,7 @@ public class VentanaPrincipal extends Frame {
 
             btnCrear.addActionListener(e -> {
                 String nombre = campoNombre.getText();
-                String departamento = campoDepartamento.getText(); // aunque no lo usas para crear Proveedor, lo capturamos
+                String departamento = campoDepartamento.getText();
                 String telefono = campoTelefono.getText();
                 String correo = campoCorreo.getText();
                 String principal = campoPrincipal.getText();
@@ -514,12 +505,12 @@ public class VentanaPrincipal extends Frame {
                     Direccion direccion = new Direccion(principal, secundaria, numCalle, ciudad, pais, provincia);
                     Proveedor proveedor = new Proveedor(idProveedores, nombre, telefono, correo, direccion);
                     proveedor.setId(idProveedores);
-                    idProveedores++; // Incrementamos después de usar
+                    idProveedores++;
 
                     proveedores.add(proveedor);
                     resultado.setText("Proveedor registrado exitosamente.");
                 } else {
-                    resultado.setText("Faltan datos. Completa todos los campos.");
+                    resultado.setText("Faltan datos.");
                 }
             });
 
