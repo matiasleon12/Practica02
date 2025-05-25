@@ -2,23 +2,6 @@
 
 Este proyecto es una aplicación Java con interfaz gráfica construida usando AWT. Permite la gestión de productos, proveedores, solicitudes de compra y solicitantes.
 
-## 📁 Estructura del Proyecto
-
-Practica02/
-├── src/
-│ └── main/
-│ └── java/
-│ ├── aplicacion/
-│ │ └── Principal.java
-│ ├── interfaz/
-│ │ └── VentanaPrincipal.java
-│ └── gestionDeCompras/
-│ ├── Producto.java
-│ ├── Proveedor.java
-│ ├── SolicitudCompra.java
-│ └── ... (otras clases)
-└── README.md
-
 ## Cómo Ejecutar
 
 1. Importa el proyecto como un proyecto Java.
