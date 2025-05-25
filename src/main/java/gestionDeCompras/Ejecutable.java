@@ -451,7 +451,7 @@ public class Ejecutable {
 
         System.out.println("Ingrese el número de la solicitud que desea modificar:");
         int numeroSolicitud = scanner.nextInt();
-        scanner.nextLine(); // limpiar buffer
+        scanner.nextLine();
 
         SolicitudCompra solicitudEncontrada = null;
 
@@ -476,7 +476,7 @@ public class Ejecutable {
         }
 
         int opcion = scanner.nextInt();
-        scanner.nextLine(); // limpiar buffer
+        scanner.nextLine();
 
         if (opcion >= 1 && opcion <= estados.length) {
             EstadoSolicitud nuevoEstado = estados[opcion - 1];
